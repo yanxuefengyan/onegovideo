@@ -66,7 +66,7 @@ export default function CreatePage() {
     setErrorMessage(null);
     setStatus("generating_script");
     setProgress(10);
-    setCurrentStep("🎬 准备舞台...");
+    setCurrentStep("准备舞台...");
 
     try {
       const mockScript: VideoScript = {
@@ -97,7 +97,7 @@ export default function CreatePage() {
       setScript(mockScript);
       setStatus("generating_images");
       setProgress(25);
-      setCurrentStep("🎨 创建舞者...");
+      setCurrentStep("创建舞者...");
 
       const width = resolution === "1080p" ? 1920 : 1280;
       const height = resolution === "1080p" ? 1080 : 720;
@@ -105,7 +105,7 @@ export default function CreatePage() {
       const previewImages: string[] = [];
       
       for (let i = 0; i < mockScript.scenes.length; i++) {
-        setCurrentStep(`🎭 准备第 ${i + 1} / ${mockScript.scenes.length} 位舞者...");
+        setCurrentStep(`准备第 ${i + 1} / ${mockScript.scenes.length} 位舞者...`);
         const img = await generateDancerImage({
           prompt: mockScript.scenes[i].imagePrompt || "",
           style: style,
@@ -121,7 +121,7 @@ export default function CreatePage() {
 
       setStatus("generating_visuals");
       setProgress(50);
-      setCurrentStep("💃 开始跳舞...");
+      setCurrentStep("开始跳舞...");
 
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -147,7 +147,7 @@ export default function CreatePage() {
         setVideoUrl(url);
         setStatus("completed");
         setProgress(100);
-        setCurrentStep("🎉 视频完成！");
+        setCurrentStep("视频完成！");
       };
 
       mediaRecorder.start();
@@ -177,11 +177,11 @@ export default function CreatePage() {
         setProgress(progressVal);
         
         if (progressVal < 70) {
-          setCurrentStep("🎬 录制舞蹈中...");
+          setCurrentStep("录制舞蹈中...");
         } else if (progressVal < 90) {
-          setCurrentStep("✨ 添加特效...");
+          setCurrentStep("添加特效...");
         } else {
-          setCurrentStep("🎵 最后润色...");
+          setCurrentStep("最后润色...");
         }
 
         frame++;
@@ -198,7 +198,7 @@ export default function CreatePage() {
       console.error("Video generation error:", error);
       setStatus("failed");
       setErrorMessage(error instanceof Error ? error.message : "未知错误");
-      setCurrentStep(`❌ 出错了：${error instanceof Error ? error.message : "未知错误"}`);
+      setCurrentStep(`出错了：${error instanceof Error ? error.message : "未知错误"}`);
     }
   }, [prompt, style, duration, resolution]);
 
